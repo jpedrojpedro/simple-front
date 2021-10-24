@@ -1,0 +1,18 @@
+ul {
+    display: flex;
+    flex-wrap: wrap;
+    list-style: none;
+}
+li {
+    width: 500px;
+    height: 500px;
+    flex-grow: 1;
+    text-align: center;
+}
+li img {
+    max-width: 400px;
+    max-height: 400px;
+}
+h1 {
+    text-align: center;
+}
