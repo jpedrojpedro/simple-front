@@ -1,0 +1,14 @@
+h1 {
+    text-align: center;
+}
+table {
+    margin-left: auto;
+    margin-right: auto;
+}
+table td {
+    text-align: center;
+}
+img {
+    max-width: 450px;
+    max-height: 450px;
+}
