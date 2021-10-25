@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Padaria Online do Sr. Bertti</title>
+    <link rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+          crossorigin="anonymous"
+    >
+    <script>
+        function render_product(product) {
+            let html = "<div class=\"col\">"
+            html += `<a href="#"><img class="img-fluid" src="../static/${product.id_imagem}.jpg" alt="${product.nome}"></a>`
+            html += `<h4 class="text-center">${product.nome}</h4>`
+            html += "</div>"
+            return html
+        }
+
+        function render_products(products, product_per_row=3) {
+            let html = "<div class=\"row\">"
+            products.forEach((product, idx) => {
+                if(idx !== 0 && idx % product_per_row === 0) {
+                    html += "</div><div class=\"row\">"
+                }
+                html += render_product(product)
+            })
+            if(products.length % product_per_row !== 0) {
+                html += "</div>"
+            }
+            return html
+        }
+
+        function render() {
+            const menu = "https://raw.githubusercontent.com/jpedrojpedro/simple-front/master/static/menu.json"
+            const headers = new Headers();
+            const conf = {
+                method: 'get',
+                headers: headers,
+                mode: 'cors',
+                cache: 'default'
+            };
+
+            fetch(menu, conf)
+                .then(response => response.json())
+                .then((data) => {
+                    document.getElementById('products').innerHTML = render_products(data.produtos);
+                })
+        }
+
+        render()
+    </script>
+</head>
+<body>
+    <h1 class="text-center">Sejam bem vindos à Padaria Online do Sr. Bertti</h1>
+    <div class="container" id="products"></div>
+</body>
+</html>
